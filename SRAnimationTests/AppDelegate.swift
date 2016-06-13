@@ -20,23 +20,33 @@ internal struct Colors {
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  var imageView: UIImageView?
+  var mask: CALayer?
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
     self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
     self.window?.rootViewController = ViewController()
-      self.window?.backgroundColor = Colors.BaseOrange
-
+    self.window?.backgroundColor = Colors.BaseOrange
+    
+    let tempView: UIView = InitialMonkeyView(frame: UIScreen.mainScreen().bounds)
+    let monkeyFace: UIImageView = UIImageView(image: UIImage(named: "monkey_face"))
+    monkeyFace.center = tempView.center
+    tempView.addSubview(monkeyFace)
+    
+    self.window!.addSubview(tempView)
+    
     let maskLayer: CALayer = CALayer()
-//    maskLayer.backgroundColor = Colors.BaseOrange.CGColor
     maskLayer.contents = UIImage(named: "monkey_face")?.CGImage
     maskLayer.contentsGravity = kCAGravityResizeAspect
     maskLayer.bounds = CGRect(x: 0.0, y: 0.0, width: 234.0, height: 182.0)
     maskLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-    maskLayer.position = (self.window?.center)!
-//    self.window?.maskView?.layer.addSublayer(maskLayer)
-//    animateMask(maskLayer)
+    maskLayer.position = tempView.center
     self.window?.layer.mask = maskLayer
+
+    animateMask(maskLayer)
     
+    self.imageView = monkeyFace
+    self.mask = maskLayer
     
     self.window?.makeKeyAndVisible()
     UIApplication.sharedApplication().statusBarHidden = true
@@ -56,9 +66,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     keyFrameAnimation.values = [initalBounds, secondBounds, finalBounds]
     keyFrameAnimation.keyTimes = [0, 0.3, 1]
     mask.addAnimation(keyFrameAnimation, forKey: "bounds")
-    
   }
 
+  override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+      self.window?.layer.mask = nil
+  }
+  
   func applicationWillResignActive(application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
