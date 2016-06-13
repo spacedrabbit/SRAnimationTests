@@ -15,17 +15,48 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     self.view.backgroundColor = Colors.SkyBlue
     
-    self.view.addSubview(backgroundView)
-    self.backgroundView.snp_makeConstraints { (make) in
+    self.view.addSubview(scrollingView)
+    self.scrollingView.addSubview(scene1)
+    self.scrollingView.addSubview(scene2)
+    
+    
+    self.scrollingView.snp_makeConstraints { (make) in
       make.edges.equalTo(self.view)
+    }
+    
+    self.scene1.snp_makeConstraints { (make) in
+      make.left.top.equalTo(self.scrollingView)
+      make.width.height.equalTo(self.view)
+    }
+    
+    self.scene2.snp_makeConstraints { (make) in
+      make.left.equalTo(self.scene1.snp_right)
+      make.top.width.height.equalTo(self.scene1)
+      make.right.equalTo(self.scrollingView)
     }
   }
   
-  internal lazy var backgroundView: InitialMonkeyView = {
+  internal lazy var scene1: InitialMonkeyView = {
     let view: InitialMonkeyView = InitialMonkeyView()
     return view
   }()
+  
+  internal lazy var scene2: SecondMonkeyView = {
+    let view: SecondMonkeyView = SecondMonkeyView()
+    return view
+  }()
+  
+  internal lazy var scrollingView: UIScrollView = {
+    let scrolling: UIScrollView = UIScrollView()
+    scrolling.pagingEnabled = true
+    scrolling.alwaysBounceVertical = false
+    scrolling.alwaysBounceHorizontal = true
+    return scrolling
+  }()
 }
+
+
+
 
 class InitialMonkeyView: UIView {
   
@@ -58,6 +89,33 @@ class InitialMonkeyView: UIView {
   
   internal lazy var playgroundImageView: UIImageView = {
     let imageView: UIImageView = UIImageView(image: UIImage(named: "playground_1"))
+    imageView.contentMode = .ScaleAspectFit
+    return imageView
+  }()
+}
+
+
+
+
+class SecondMonkeyView: InitialMonkeyView {
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    
+    self.addSubview(monkeyImageView)
+    self.playgroundImageView.image = UIImage(named: "playground_2")
+    
+    self.monkeyImageView.snp_makeConstraints { (make) in
+      make.centerX.equalTo(self)
+      make.bottom.equalTo(self.groundView.snp_centerY)
+    }
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+  
+  internal lazy var monkeyImageView: UIImageView = {
+    let imageView: UIImageView = UIImageView(image: UIImage(named: "waving_monkey"))
     imageView.contentMode = .ScaleAspectFit
     return imageView
   }()
