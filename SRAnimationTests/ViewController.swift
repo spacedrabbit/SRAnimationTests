@@ -89,14 +89,32 @@ class InitialMonkeyView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    self.clipsToBounds = true
     
+    self.addSubview(pageControl)
     self.addSubview(groundView)
+    self.addSubview(cloud1)
+    self.addSubview(cloud2)
+    self.addSubview(sceneLabel)
+    
+    self.cloud1.transform = CGAffineTransformMakeScale(-1.0, 1.0)
+    
     self.addSubview(playgroundImageView)
     self.addSubview(monkeyImageView)
+    
+    self.sceneLabel.font = UIFont.systemFontOfSize(24.0, weight: UIFontWeightSemibold)
+    self.sceneLabel.text = "Little monkeys can be\na bit rambunctious."
+    self.pageControl.numberOfPages = 3
+    self.pageControl.currentPage = 0
     
     self.groundView.snp_makeConstraints { (make) in
       make.left.bottom.right.width.equalTo(self)
       make.height.equalTo(238.0)
+    }
+    
+    self.pageControl.snp_makeConstraints { (make) in
+      make.centerX.equalTo(self)
+      make.centerY.equalTo(self.snp_top).offset(40.0)
     }
     
     self.playgroundImageView.snp_makeConstraints { (make) in
@@ -108,6 +126,21 @@ class InitialMonkeyView: UIView {
       make.top.equalTo(self.playgroundImageView.snp_top).multipliedBy(1.6)
     }
 
+    self.cloud1.snp_makeConstraints { (make) in
+      make.centerY.equalTo(self.playgroundImageView.snp_top).multipliedBy(1.25)
+      make.centerX.equalTo(self.playgroundImageView.snp_left)
+    }
+    
+    self.cloud2.snp_makeConstraints { (make) in
+      make.bottom.equalTo(self.cloud1.snp_top)
+      make.centerX.equalTo(self.playgroundImageView.snp_right)
+    }
+    
+    self.sceneLabel.snp_makeConstraints { (make) in
+      make.centerX.equalTo(self)
+      make.top.equalTo(self).offset(80.0)
+      make.width.lessThanOrEqualTo(self)
+    }
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -137,6 +170,29 @@ class InitialMonkeyView: UIView {
     imageView.contentMode = .ScaleAspectFit
     return imageView
   }()
+  
+  internal lazy var cloud1: UIImageView = {
+    let imageView: UIImageView = UIImageView(image: UIImage(named: "cloud_1"))
+    imageView.contentMode = .ScaleAspectFit
+    return imageView
+  }()
+  
+  internal lazy var cloud2: UIImageView = {
+    let imageView: UIImageView = UIImageView(image: UIImage(named: "cloud_2"))
+    imageView.contentMode = .ScaleAspectFit
+    return imageView
+  }()
+  
+  internal lazy var sceneLabel: UILabel = {
+    let label: UILabel = UILabel()
+    label.textColor = UIColor.whiteColor()
+    label.font = UIFont.systemFontOfSize(24.0, weight: UIFontWeightRegular)
+    label.numberOfLines = 2
+    label.textAlignment = .Center
+    return label
+  }()
+  
+  internal lazy var pageControl: UIPageControl = UIPageControl()
 }
 
 
@@ -149,8 +205,12 @@ class SecondMonkeyView: InitialMonkeyView {
     self.addSubview(iphoneImageView)
     self.playgroundImageView.image = UIImage(named: "playground_2")
     self.monkeyImageView.image = UIImage(named: "waving_monkey")
+    self.pageControl.currentPage = 1
     
-    self.monkeyImageView.snp_makeConstraints { (make) in
+    self.sceneLabel.font = UIFont.systemFontOfSize(24.0, weight: UIFontWeightRegular)
+    self.sceneLabel.text = "The Monkey app is a wireless\nbond with your child."
+    
+    self.monkeyImageView.snp_remakeConstraints { (make) in
       make.centerX.equalTo(self)
       make.bottom.equalTo(self.groundView.snp_centerY)
     }
@@ -164,13 +224,22 @@ class SecondMonkeyView: InitialMonkeyView {
       make.left.equalTo(playgroundImageView.snp_left).offset(8.0)
       make.top.equalTo(self.groundView.snp_centerY).inset(8.0)
     }
+    
+    self.cloud2.snp_remakeConstraints { (make) in
+      make.centerY.equalTo(self.snp_top).offset(238.0)
+      make.centerX.equalTo(self.monkeyImageView.snp_right).inset(12.0)
+    }
+    
+    self.cloud1.snp_remakeConstraints { (make) in
+      make.top.equalTo(self.cloud2.snp_bottom).offset(24.0)
+      make.right.equalTo(self.playgroundImageView.snp_left).offset(12.0)
+    }
   }
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
   
-
 }
 
 
@@ -180,13 +249,15 @@ class ThirdMonkeyView: InitialMonkeyView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    self.addSubview(monkeyImageView)
     self.addSubview(iphoneImageView)
     
     self.playgroundImageView.image = UIImage(named: "playground_2")
     self.iphoneImageView.image = UIImage(named: "iphone_yellow")
     self.monkeyImageView.image = UIImage(named: "swinging_monkey")
+    self.pageControl.currentPage = 1
     
+    self.sceneLabel.font = UIFont.systemFontOfSize(24.0, weight: UIFontWeightRegular)
+    self.sceneLabel.text = "As your monkeys play,\nMonkey keeps an eye on them."
     self.monkeyImageView.transform = CGAffineTransformMakeScale(-1.0, 1)
     
     self.monkeyImageView.snp_remakeConstraints { (make) in
@@ -204,6 +275,16 @@ class ThirdMonkeyView: InitialMonkeyView {
       make.left.equalTo(playgroundImageView.snp_left).offset(8.0)
       make.top.equalTo(self.groundView.snp_centerY).inset(8.0)
     }
+    
+    self.cloud2.snp_remakeConstraints { (make) in
+      make.centerY.equalTo(self.snp_top).offset(238.0)
+      make.centerX.equalTo(self.playgroundImageView.snp_left)
+    }
+    
+    self.cloud1.snp_remakeConstraints { (make) in
+      make.top.equalTo(self.cloud2.snp_bottom).offset(24.0)
+      make.centerX.equalTo(self.groundView.snp_right).inset(12.0)
+    }
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -219,8 +300,14 @@ class FourthMonkeyView: InitialMonkeyView {
     super.init(frame: frame)
     
     self.addSubview(iphoneImageView)
+    self.monkeyImageView.hidden = true
+    self.pageControl.currentPage = 1
+    
     self.playgroundImageView.image = UIImage(named: "playground_2")
     self.iphoneImageView.image = UIImage(named: "iphone_red")
+    
+    self.sceneLabel.font = UIFont.systemFontOfSize(24.0, weight: UIFontWeightRegular)
+    self.sceneLabel.text = "If your monkey strays too far,\n you're alerted fast."
     
     self.playgroundImageView.snp_remakeConstraints { (make) in
       make.centerX.equalTo(self.groundView.snp_centerX).dividedBy(2.0)
@@ -230,6 +317,16 @@ class FourthMonkeyView: InitialMonkeyView {
     self.iphoneImageView.snp_makeConstraints { (make) in
       make.left.equalTo(playgroundImageView.snp_left).offset(8.0)
       make.top.equalTo(self.groundView.snp_centerY).inset(8.0)
+    }
+    
+    self.cloud1.snp_remakeConstraints { (make) in
+      make.centerY.equalTo(self.snp_top).offset(238.0)
+      make.centerX.equalTo(self.playgroundImageView.snp_right).offset(-12.0)
+    }
+    
+    self.cloud2.snp_remakeConstraints { (make) in
+      make.top.equalTo(self.cloud1.snp_bottom).offset(24.0)
+      make.left.equalTo(self.cloud1.snp_right).inset(2.0)
     }
   }
   
@@ -245,21 +342,23 @@ class FifthMonkeyView: InitialMonkeyView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    self.addSubview(monkeyImageView)
     self.addSubview(treeImageView)
     self.addSubview(button)
     
     self.playgroundImageView.hidden = true
     self.iphoneImageView.hidden = true
+    self.pageControl.currentPage = 2
     
     self.monkeyImageView.image = UIImage(named: "cheeky_monkey")
+    self.sceneLabel.font = UIFont.systemFontOfSize(24.0, weight: UIFontWeightRegular)
+    self.sceneLabel.text = "With Monkey, you can\nlet your monkeys run free."
     
     self.treeImageView.snp_makeConstraints { (make) in
       make.bottom.equalTo(self.groundView.snp_top).offset(12.0)
       make.left.equalTo(self.groundView).offset(12.0)
     }
     
-    self.monkeyImageView.snp_makeConstraints { (make) in
+    self.monkeyImageView.snp_remakeConstraints { (make) in
       make.centerX.equalTo(self.groundView.snp_centerX)
       make.centerY.equalTo(self.groundView.snp_top)
     }
@@ -267,6 +366,16 @@ class FifthMonkeyView: InitialMonkeyView {
     self.button.snp_makeConstraints { (make) in
       make.left.right.bottom.equalTo(self.groundView).inset(8.0)
       make.height.equalTo(75.0)
+    }
+    
+    self.cloud1.snp_remakeConstraints { (make) in
+      make.centerY.equalTo(self.snp_top).offset(238.0)
+      make.centerX.equalTo(self.monkeyImageView.snp_right)
+    }
+    
+    self.cloud2.snp_remakeConstraints { (make) in
+      make.top.equalTo(self.cloud1.snp_bottom).offset(24.0)
+      make.right.equalTo(self.treeImageView.snp_right).inset(2.0)
     }
     
   }
