@@ -14,6 +14,7 @@ internal struct Colors {
   static let SkyBlue: UIColor = UIColor(red: 118.0/255.0, green: 210.0/255.0, blue: 225.0/255.0, alpha: 1.0)
   static let GroundGreen: UIColor = UIColor(red: 95.0/255.0, green: 162.0/255.0, blue: 129.0/255.0, alpha: 1.0)
   static let GroundBorderGreen: UIColor = UIColor(red: 167.0/255.0, green: 214.0/255.0, blue: 146.0/255.0, alpha: 1.0)
+  static let ButtonBlue: UIColor = UIColor(red: 50.0/255.0, green: 49.0/255.0, blue: 84.0/255.0, alpha: 1.0)
 }
 
 @UIApplicationMain
