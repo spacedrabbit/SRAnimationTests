@@ -101,6 +101,7 @@ class InitialMonkeyView: UIView {
     
     self.addSubview(playgroundImageView)
     self.addSubview(monkeyImageView)
+    self.addSubview(groundShadow)
     
     self.sceneLabel.font = UIFont.systemFontOfSize(24.0, weight: UIFontWeightSemibold)
     self.sceneLabel.text = "Little monkeys can be\na bit rambunctious."
@@ -141,6 +142,11 @@ class InitialMonkeyView: UIView {
       make.top.equalTo(self).offset(80.0)
       make.width.lessThanOrEqualTo(self)
     }
+    
+    self.groundShadow.snp_makeConstraints { (make) in
+      make.centerX.equalTo(self.monkeyImageView.snp_centerX)
+      make.top.equalTo(self.playgroundImageView.snp_bottom).offset(8.0)
+    }
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -151,6 +157,12 @@ class InitialMonkeyView: UIView {
     let view: UIView = UIView()
     view.backgroundColor = Colors.GroundGreen
     return view
+  }()
+  
+  internal lazy var groundShadow: UIImageView = {
+    let imageView: UIImageView = UIImageView(image: UIImage(named: "ground_shadow"))
+    imageView.contentMode = .ScaleAspectFit
+    return imageView
   }()
   
   internal lazy var playgroundImageView: UIImageView = {
@@ -205,6 +217,7 @@ class SecondMonkeyView: InitialMonkeyView {
     self.addSubview(iphoneImageView)
     self.playgroundImageView.image = UIImage(named: "playground_2")
     self.monkeyImageView.image = UIImage(named: "waving_monkey")
+    self.groundShadow.removeFromSuperview()
     self.pageControl.currentPage = 1
     
     self.sceneLabel.font = UIFont.systemFontOfSize(24.0, weight: UIFontWeightRegular)
@@ -255,6 +268,7 @@ class ThirdMonkeyView: InitialMonkeyView {
     self.iphoneImageView.image = UIImage(named: "iphone_yellow")
     self.monkeyImageView.image = UIImage(named: "swinging_monkey")
     self.pageControl.currentPage = 1
+    self.groundShadow.removeFromSuperview()
     
     self.sceneLabel.font = UIFont.systemFontOfSize(24.0, weight: UIFontWeightRegular)
     self.sceneLabel.text = "As your monkeys play,\nMonkey keeps an eye on them."
@@ -302,6 +316,7 @@ class FourthMonkeyView: InitialMonkeyView {
     self.addSubview(iphoneImageView)
     self.monkeyImageView.hidden = true
     self.pageControl.currentPage = 1
+    self.groundShadow.removeFromSuperview()
     
     self.playgroundImageView.image = UIImage(named: "playground_2")
     self.iphoneImageView.image = UIImage(named: "iphone_red")
@@ -348,6 +363,7 @@ class FifthMonkeyView: InitialMonkeyView {
     self.playgroundImageView.hidden = true
     self.iphoneImageView.hidden = true
     self.pageControl.currentPage = 2
+    self.groundShadow.removeFromSuperview()
     
     self.monkeyImageView.image = UIImage(named: "cheeky_monkey")
     self.sceneLabel.font = UIFont.systemFontOfSize(24.0, weight: UIFontWeightRegular)

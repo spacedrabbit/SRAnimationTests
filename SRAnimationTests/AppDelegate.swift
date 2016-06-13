@@ -26,18 +26,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
     self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//    self.window?.backgroundColor = Colors.BaseOrange
     self.window?.rootViewController = ViewController()
     
-//    let tempView: UIView = InitialMonkeyView(frame: UIScreen.mainScreen().bounds)
-//    let monkeyFace: UIImageView = UIImageView(image: UIImage(named: "monkey_face"))
-//    monkeyFace.center = tempView.center
-//    tempView.addSubview(monkeyFace)
+    let tempView: UIView = InitialMonkeyView(frame: UIScreen.mainScreen().bounds)
+    let monkeyFace: UIImageView = UIImageView(image: UIImage(named: "monkey_face"))
+    monkeyFace.center = tempView.center
+    tempView.backgroundColor = Colors.BaseOrange
+    tempView.addSubview(monkeyFace)
     
-    let monkeyFace: UIImageView = UIImageView(frame: self.window!.frame)
-    monkeyFace.image = UIImage(named: "monkey_face")
+//    let monkeyFace: UIImageView = UIImageView(frame: self.window!.frame)
+//    monkeyFace.image = UIImage(named: "monkey_face")
     
-    self.window!.addSubview(monkeyFace)
+//    self.window!.addSubview(monkeyFace)
     
     let maskLayer: CALayer = CALayer()
     maskLayer.contents = UIImage(named: "monkey_face")?.CGImage
@@ -47,17 +47,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     maskLayer.position = CGPoint(x: monkeyFace.frame.size.width / 2, y: monkeyFace.frame.size.height / 2)
     
 //    monkeyFace.layer.mask = maskLayer
-    self.window?.layer.mask = maskLayer
+//    self.window?.layer.mask = maskLayer
 
 
     
-    self.imageView = monkeyFace
-    self.mask = maskLayer
+//    self.imageView = monkeyFace
+//    self.mask = maskLayer
     
-    animateMask(maskLayer)
+//    animateMask(maskLayer)
     
     
-    self.window?.backgroundColor = Colors.BaseOrange
+//    self.window?.backgroundColor = Colors.BaseOrange
     self.window?.makeKeyAndVisible()
     UIApplication.sharedApplication().statusBarHidden = true
     return true
