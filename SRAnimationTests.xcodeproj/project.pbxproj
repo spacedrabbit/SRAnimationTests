@@ -12,6 +12,7 @@
 		146A7F391D0F119300CB503A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 146A7F371D0F119300CB503A /* Main.storyboard */; };
 		146A7F3B1D0F119300CB503A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146A7F3A1D0F119300CB503A /* Assets.xcassets */; };
 		146A7F3E1D0F119300CB503A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 146A7F3C1D0F119300CB503A /* LaunchScreen.storyboard */; };
+		90098AFC55671364F159D81D /* Pods_SRAnimationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE445792BADE97868A7D6B7E /* Pods_SRAnimationTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		146A7F3A1D0F119300CB503A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		146A7F3D1D0F119300CB503A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		146A7F3F1D0F119300CB503A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B67984FF0AB377DAD7F883CC /* Pods-SRAnimationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SRAnimationTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SRAnimationTests/Pods-SRAnimationTests.release.xcconfig"; sourceTree = "<group>"; };
+		CE43B24D2EB0CEF832F988B9 /* Pods-SRAnimationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SRAnimationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SRAnimationTests/Pods-SRAnimationTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EE445792BADE97868A7D6B7E /* Pods_SRAnimationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SRAnimationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90098AFC55671364F159D81D /* Pods_SRAnimationTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				146A7F321D0F119300CB503A /* SRAnimationTests */,
 				146A7F311D0F119300CB503A /* Products */,
+				A69696900E02119BA82F4283 /* Pods */,
+				717B3E63C18A597B469375CC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = SRAnimationTests;
 			sourceTree = "<group>";
 		};
+		717B3E63C18A597B469375CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE445792BADE97868A7D6B7E /* Pods_SRAnimationTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A69696900E02119BA82F4283 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CE43B24D2EB0CEF832F988B9 /* Pods-SRAnimationTests.debug.xcconfig */,
+				B67984FF0AB377DAD7F883CC /* Pods-SRAnimationTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 146A7F421D0F119300CB503A /* Build configuration list for PBXNativeTarget "SRAnimationTests" */;
 			buildPhases = (
+				A6473B1FF2D17DA8EEE8617E /* [CP] Check Pods Manifest.lock */,
 				146A7F2C1D0F119300CB503A /* Sources */,
 				146A7F2D1D0F119300CB503A /* Frameworks */,
 				146A7F2E1D0F119300CB503A /* Resources */,
+				06DCFDC94833AC462733B5D2 /* [CP] Embed Pods Frameworks */,
+				046BDB2C115DBF45B33C3BA5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,6 +156,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		046BDB2C115DBF45B33C3BA5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SRAnimationTests/Pods-SRAnimationTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		06DCFDC94833AC462733B5D2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SRAnimationTests/Pods-SRAnimationTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A6473B1FF2D17DA8EEE8617E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		146A7F2C1D0F119300CB503A /* Sources */ = {
@@ -249,23 +324,27 @@
 		};
 		146A7F431D0F119300CB503A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE43B24D2EB0CEF832F988B9 /* Pods-SRAnimationTests.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SRAnimationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = catthoughts.SRAnimationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
 		146A7F441D0F119300CB503A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B67984FF0AB377DAD7F883CC /* Pods-SRAnimationTests.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SRAnimationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = catthoughts.SRAnimationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -288,6 +367,7 @@
 				146A7F441D0F119300CB503A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
