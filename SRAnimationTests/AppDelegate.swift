@@ -23,44 +23,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   var imageView: UIImageView?
   var mask: CALayer?
+  var introView: UIView?
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
     self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-    self.window?.rootViewController = ViewController()
-    
-    let tempView: UIView = InitialMonkeyView(frame: UIScreen.mainScreen().bounds)
+
+    let tempView: UIView = UIView(frame: UIScreen.mainScreen().bounds)
     let monkeyFace: UIImageView = UIImageView(image: UIImage(named: "monkey_face"))
-    monkeyFace.center = tempView.center
     tempView.backgroundColor = Colors.BaseOrange
     tempView.addSubview(monkeyFace)
+    tempView.snp_makeConstraints { (make) in
+      make.center.equalTo(tempView)
+    }
     
-//    let monkeyFace: UIImageView = UIImageView(frame: self.window!.frame)
-//    monkeyFace.image = UIImage(named: "monkey_face")
+    introView = tempView
+    self.window!.addSubview(tempView)
+    animateView(monkeyFace)
     
-//    self.window!.addSubview(monkeyFace)
-    
-    let maskLayer: CALayer = CALayer()
-    maskLayer.contents = UIImage(named: "monkey_face")?.CGImage
-    maskLayer.contentsGravity = kCAGravityResizeAspect
-    maskLayer.bounds = CGRect(x: 0.0, y: 0.0, width: 234.0, height: 182.0)
-    maskLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-    maskLayer.position = CGPoint(x: monkeyFace.frame.size.width / 2, y: monkeyFace.frame.size.height / 2)
-    
-//    monkeyFace.layer.mask = maskLayer
-//    self.window?.layer.mask = maskLayer
-
-
-    
-//    self.imageView = monkeyFace
-//    self.mask = maskLayer
-    
-//    animateMask(maskLayer)
-    
-    
-//    self.window?.backgroundColor = Colors.BaseOrange
-    self.window?.makeKeyAndVisible()
-    UIApplication.sharedApplication().statusBarHidden = true
+        UIApplication.sharedApplication().statusBarHidden = true
     return true
+  }
+  
+  func animateView(view: UIView) {
+    
+    UIView.animateKeyframesWithDuration(0.6, delay: 0.1, options: [], animations: { 
+      
+      UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.33, animations: { 
+        view.transform = CGAffineTransformMakeScale(0.8, 0.8)
+      })
+      
+      UIView.addKeyframeWithRelativeStartTime(0.33, relativeDuration: 0.33, animations: {
+        view.transform = CGAffineTransformMakeScale(1.0, 1.0)
+      })
+      
+      UIView.addKeyframeWithRelativeStartTime(0.67, relativeDuration: 0.33, animations: {
+        view.transform = CGAffineTransformMakeScale(4.0, 4.0)
+        view.alpha = 0.0
+      })
+      
+    }) { (complete: Bool) in
+      if complete == true {
+        self.introView!.removeFromSuperview()
+        self.window!.rootViewController = ViewController()
+        self.window!.makeKeyAndVisible()
+
+      }
+    }
+    
+    
   }
   
   func animateMask(mask: CALayer) {
@@ -80,7 +90,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-      self.window?.layer.mask = nil
+//      self.window?.layer.mask = nil
+    if flag == true {
+      UIView.animateWithDuration(0.15, animations: { 
+        self.introView?.alpha = 0.0
+      })
+    }
   }
   
   func applicationWillResignActive(application: UIApplication) {
