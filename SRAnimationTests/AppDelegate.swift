@@ -24,12 +24,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
     self.window?.rootViewController = ViewController()
-    self.window?.makeKeyAndVisible()
-    
+      self.window?.backgroundColor = Colors.BaseOrange
+
     let maskLayer: CALayer = CALayer()
-    maskLayer.backgroundColor = Colors.BaseOrange.CGColor
+//    maskLayer.backgroundColor = Colors.BaseOrange.CGColor
+    maskLayer.contents = UIImage(named: "monkey_face")?.CGImage
+    maskLayer.contentsGravity = kCAGravityResizeAspect
+    maskLayer.bounds = CGRect(x: 0.0, y: 0.0, width: 234.0, height: 182.0)
+    maskLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    maskLayer.position = (self.window?.center)!
+//    self.window?.maskView?.layer.addSublayer(maskLayer)
+//    animateMask(maskLayer)
+    self.window?.layer.mask = maskLayer
     
+    
+    self.window?.makeKeyAndVisible()
+    UIApplication.sharedApplication().statusBarHidden = true
     return true
+  }
+  
+  func animateMask(mask: CALayer) {
+    
+    let keyFrameAnimation = CAKeyframeAnimation(keyPath: "bounds")
+    keyFrameAnimation.delegate = self
+    keyFrameAnimation.duration = 0.6
+    keyFrameAnimation.beginTime = CACurrentMediaTime() + 0.5
+    keyFrameAnimation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut), CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)]
+    let initalBounds = NSValue(CGRect: mask.bounds)
+    let secondBounds = NSValue(CGRect: CGRect(x: 0, y: 0, width: 90, height: 73))
+    let finalBounds = NSValue(CGRect: CGRect(x: 0, y: 0, width: 1600, height: 1300))
+    keyFrameAnimation.values = [initalBounds, secondBounds, finalBounds]
+    keyFrameAnimation.keyTimes = [0, 0.3, 1]
+    mask.addAnimation(keyFrameAnimation, forKey: "bounds")
+    
   }
 
   func applicationWillResignActive(application: UIApplication) {
