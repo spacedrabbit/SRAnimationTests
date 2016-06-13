@@ -1,15 +1,21 @@
 PODS:
   - Advance (0.9.1)
+  - EasyAnimation (1.0.5)
+  - Interpolate (0.1.4)
   - SnapKit (0.21.0)
 
 DEPENDENCIES:
   - Advance (~> 0.9.1)
+  - EasyAnimation (~> 1.0.5)
+  - Interpolate (~> 0.1.4)
   - SnapKit (~> 0.21.0)
 
 SPEC CHECKSUMS:
   Advance: 58f115c484cded634ffe529fcf6d39e741de1a44
+  EasyAnimation: 32821f37dd39187e7364369a3d8f65d38405cf1d
+  Interpolate: b59d8bf719809fa8aa119bc4cc4542cbed3fe46d
   SnapKit: 2756fe24b706367af224c9c508d2f9166d03354c
 
-PODFILE CHECKSUM: 14eb187814577d5da8c7addc3fe33becc4733b88
+PODFILE CHECKSUM: 7febc5c6d27ee18041f1c46cf4069a2c774c24e8
 
 COCOAPODS: 1.0.1

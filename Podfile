@@ -6,5 +6,7 @@ target 'SRAnimationTests' do
   use_frameworks!
   pod 'SnapKit', '~> 0.21.0'
   pod 'Advance', '~> 0.9.1'
+  pod 'Interpolate', '~> 0.1.4'
+  pod 'EasyAnimation', '~> 1.0.5'
 
 end

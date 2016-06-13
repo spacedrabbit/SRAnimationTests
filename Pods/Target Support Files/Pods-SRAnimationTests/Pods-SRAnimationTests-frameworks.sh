@@ -85,9 +85,13 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Advance/Advance.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/EasyAnimation/EasyAnimation.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Interpolate/Interpolate.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit/SnapKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Advance/Advance.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/EasyAnimation/EasyAnimation.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Interpolate/Interpolate.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit/SnapKit.framework"
 fi
